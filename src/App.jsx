@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 
+import Calendar from './components/Calendar';
+
 const App = () => (
   <div className="App">
-    Test
+    <Calendar />
   </div>
 );
 

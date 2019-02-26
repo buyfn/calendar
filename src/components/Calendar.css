@@ -1,0 +1,11 @@
+.calendar {
+    border-collapse: collapse;
+    min-width: 400px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.day-cell {
+    border: 1px solid black;
+    height: 10vw;
+}
