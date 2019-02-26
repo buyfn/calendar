@@ -8,7 +8,10 @@ const Button = ({ children, onClick }) => (
 );
 
 Button.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]).isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
