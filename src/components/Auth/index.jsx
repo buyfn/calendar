@@ -5,8 +5,6 @@ import LoginForm from '../LoginForm';
 import LogoutLink from '../LogoutLink';
 import { FirebaseContext } from '../Firebase';
 
-// import * as ROUTES from '../../constants/routes';
-
 const Auth = () => (
   <div>
     <FirebaseContext.Consumer>
@@ -16,8 +14,7 @@ const Auth = () => (
           <LoginForm firebase={firebase} />
           <LogoutLink firebase={firebase} />
         </div>
-      )
-      }
+      )}
     </FirebaseContext.Consumer>
   </div>
 );

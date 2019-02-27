@@ -1,16 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import * as ROUTES from '../../constants/routes';
+import LogoutLink from '../LogoutLink';
+import { FirebaseContext } from '../Firebase';
 
-const Navigation = () => (
+const Navigation = ({ currentUser }) => (
   <div>
-    <ul>
-      <li>
-        <Link to={ROUTES.AUTH}>AUTH</Link>
-      </li>
-    </ul>
+    <FirebaseContext.Consumer>
+      {firebase => (
+        <div>
+          <LogoutLink firebase={firebase} />
+          <p>{currentUser ? currentUser.email : ''}</p>
+        </div>
+      )
+      }
+    </FirebaseContext.Consumer>
   </div>
 );
 
-export default Navigation;
+const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Navigation);

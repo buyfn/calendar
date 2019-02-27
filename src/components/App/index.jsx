@@ -10,10 +10,10 @@ import { setCurrentUser } from '../../actions/index';
 
 import * as ROUTES from '../../constants/routes';
 
-const App = (props) => {
+const App = ({ firebase, setCurrentUser, currentUser }) => {
   useEffect(() => {
-    props.firebase.auth.onAuthStateChanged((authUser) => {
-      props.setCurrentUser(authUser);
+    firebase.auth.onAuthStateChanged((authUser) => {
+      setCurrentUser(authUser);
     });
   });
 
@@ -22,15 +22,24 @@ const App = (props) => {
       <BrowserRouter>
         <div>
           <Navigation />
-          <Route exact path={ROUTES.MAIN} component={Calendar} />
-          <Route path={ROUTES.AUTH} component={AuthPage} />
+          <Route
+            exact
+            path={ROUTES.MAIN}
+            component={currentUser ? Calendar : AuthPage}
+          />
         </div>
       </BrowserRouter>
     </div>
   );
 };
 
+const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+});
+
+const mapDispatchToProps = { setCurrentUser };
+
 export default connect(
-  null,
-  { setCurrentUser },
+  mapStateToProps,
+  mapDispatchToProps,
 )(App);

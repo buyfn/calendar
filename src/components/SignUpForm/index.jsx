@@ -23,7 +23,7 @@ const SignUpForm = (props) => {
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
           name="signUpEmail"
-          // value={email}
+          value={props.signUpEmail}
           onChange={handleInput}
           type="text"
           placeholder="Email"
@@ -31,7 +31,7 @@ const SignUpForm = (props) => {
 
         <input
           name="signUpPassword"
-          // value={passwordOne}
+          value={props.signUpPassword}
           onChange={handleInput}
           type="password"
           placeholder="Password"
