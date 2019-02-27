@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.jsx',
   mode: 'development',
+  devServer: {
+    contentBase: './build',
+  },
   module: {
     rules: [
       {
