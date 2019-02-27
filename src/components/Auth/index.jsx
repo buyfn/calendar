@@ -2,7 +2,6 @@ import React from 'react';
 
 import SignUpForm from '../SignUpForm';
 import LoginForm from '../LoginForm';
-import LogoutLink from '../LogoutLink';
 import { FirebaseContext } from '../Firebase';
 
 const Auth = () => (
@@ -12,7 +11,6 @@ const Auth = () => (
         <div>
           <SignUpForm firebase={firebase} />
           <LoginForm firebase={firebase} />
-          <LogoutLink firebase={firebase} />
         </div>
       )}
     </FirebaseContext.Consumer>

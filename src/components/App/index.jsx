@@ -6,6 +6,7 @@ import './App.css';
 import Navigation from '../Navigation';
 import Calendar from '../Calendar';
 import AuthPage from '../Auth';
+import NewEntryPage from '../NewEntry';
 import { setCurrentUser } from '../../actions/index';
 
 import * as ROUTES from '../../constants/routes';
@@ -26,6 +27,10 @@ const App = ({ firebase, setCurrentUser, currentUser }) => {
             exact
             path={ROUTES.MAIN}
             component={currentUser ? Calendar : AuthPage}
+          />
+          <Route
+            path={ROUTES.NEW_ENTRY}
+            component={NewEntryPage}
           />
         </div>
       </BrowserRouter>

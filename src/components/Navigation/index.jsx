@@ -9,8 +9,14 @@ const Navigation = ({ currentUser }) => (
     <FirebaseContext.Consumer>
       {firebase => (
         <div>
-          <LogoutLink firebase={firebase} />
-          <p>{currentUser ? currentUser.email : ''}</p>
+          {currentUser
+            ? (
+              <div>
+                <LogoutLink firebase={firebase} />
+                <p>{currentUser.email}</p>
+              </div>
+            )
+            : ''}
         </div>
       )
       }

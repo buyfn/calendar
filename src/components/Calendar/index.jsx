@@ -10,9 +10,11 @@ import {
   startOfISOWeek,
   endOfISOWeek,
 } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 import './Calendar.css';
 import Button from '../Button';
+import { NEW_ENTRY } from '../../constants/routes';
 
 const renderMonthHeader = () => (
   <tr>
@@ -77,20 +79,24 @@ const Calendar = () => {
 
   return (
     <div>
-      <h1>{format(currentDate, 'MMMM YYYY')}</h1>
+      <div>
+        <h1>{format(currentDate, 'MMMM YYYY')}</h1>
 
-      <div className="calendar-wrapper">
-        <Button onClick={setToPrevMonth}>Back</Button>
+        <div className="calendar-wrapper">
+          <Button onClick={setToPrevMonth}>Back</Button>
 
-        <table className="month-table">
-          <tbody>
-            {renderMonthHeader()}
-            {weekStartDates.map(renderWeek)}
-          </tbody>
-        </table>
+          <table className="month-table">
+            <tbody>
+              {renderMonthHeader()}
+              {weekStartDates.map(renderWeek)}
+            </tbody>
+          </table>
 
-        <Button onClick={setToNextMonth}>Forward</Button>
+          <Button onClick={setToNextMonth}>Forward</Button>
+        </div>
       </div>
+
+      <Link to={NEW_ENTRY}>New entry</Link>
     </div>
   );
 };
