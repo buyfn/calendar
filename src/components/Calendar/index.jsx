@@ -12,7 +12,7 @@ import {
 } from 'date-fns';
 
 import './Calendar.css';
-import Button from './Button';
+import Button from '../Button';
 
 const renderMonthHeader = () => (
   <tr>
