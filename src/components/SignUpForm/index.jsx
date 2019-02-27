@@ -10,10 +10,13 @@ const SignUpForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await props.firebase.doCreateUserWithEmailAndPassword(
+    const { user: { uid } } = await props.firebase.doCreateUserWithEmailAndPassword(
       props.signUpEmail,
       props.signUpPassword,
     );
+    props.firebase.user(uid).set({
+      email: props.signUpEmail,
+    });
   };
 
   return (

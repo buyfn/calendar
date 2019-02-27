@@ -9,3 +9,8 @@ export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   payload: { user },
 });
+
+export const addEntry = (date, hours) => ({
+  type: types.ADD_ENTRY,
+  payload: { date, hours },
+});

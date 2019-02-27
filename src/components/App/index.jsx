@@ -26,11 +26,15 @@ const App = ({ firebase, setCurrentUser, currentUser }) => {
           <Route
             exact
             path={ROUTES.MAIN}
-            component={currentUser ? Calendar : AuthPage}
+            component={
+              currentUser
+                ? () => <Calendar firebase={firebase} />
+                : AuthPage
+            }
           />
           <Route
             path={ROUTES.NEW_ENTRY}
-            component={NewEntryPage}
+            component={() => <NewEntryPage firebase={firebase} />}
           />
         </div>
       </BrowserRouter>

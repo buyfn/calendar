@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateInput } from '../../actions/index';
+
+import { updateInput } from '../../actions';
 
 const handleInput = props => ({ target }) => {
   props.updateInput(target.name, target.value);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   format,
   eachDay,
@@ -65,8 +65,12 @@ const renderWeek = (date) => {
   );
 };
 
-const Calendar = () => {
+const Calendar = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    console.log('effect', props.firebase);
+  });
 
   const weekStartDates = generateWeekStartDates(currentDate);
 
