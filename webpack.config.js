@@ -6,6 +6,9 @@ module.exports = {
   mode: 'development',
   devServer: {
     contentBase: './build',
+    historyApiFallback: {
+      index: 'index.html',
+    },
   },
   module: {
     rules: [
