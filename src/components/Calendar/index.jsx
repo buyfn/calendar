@@ -29,24 +29,24 @@ const renderMonthHeader = () => (
   </tr>
 );
 
-const renderDayCell = (date, hours = 0) => {
+const renderDayCell = (date, hours) => {
   const dateString = format(date, 'DD');
 
-  const cellColorClass = () => {
+  const getCellColorClass = () => {
     if (hours > 8) {
       return 'red';
     }
     if (hours === 0) {
       return 'gray';
     }
-    if (hours >= 4) {
+    if (hours <= 4) {
       return 'green';
     }
     return '';
   };
 
   return (
-    <td className={`day-cell ${cellColorClass()}`} key={date}>
+    <td className={`day-cell ${getCellColorClass()}`} key={date}>
       <div className="day-cell-date">{dateString}</div>
       {hours > 0
         ? <div className="day-cell-hours">{hours}</div>
@@ -97,32 +97,36 @@ const Calendar = ({ loggedTime }) => {
             ? loggedTime[formattedDate]
             : 0;
 
-          return renderDayCell(d, hours);
+          return renderDayCell(d, Number(hours));
         })}
       </tr>
     );
   };
 
   return (
-    <div>
-      <div>
-        <h1>{format(currentDate, 'MMMM YYYY')}</h1>
+    <div className="calendar">
+      <h1>{format(currentDate, 'MMMM YYYY')}</h1>
 
-        <div className="calendar-wrapper">
-          <Button onClick={setToPrevMonth}>Back</Button>
+      <div className="calendar-wrapper">
+        <Button onClick={setToPrevMonth} className="scroll-calendar-button">
+            Previous month
+        </Button>
 
-          <table className="month-table">
-            <tbody>
-              {renderMonthHeader()}
-              {weekStartDates.map(renderWeek)}
-            </tbody>
-          </table>
+        <table className="month-table">
+          <tbody>
+            {renderMonthHeader()}
+            {weekStartDates.map(renderWeek)}
+          </tbody>
+        </table>
 
-          <Button onClick={setToNextMonth}>Forward</Button>
-        </div>
+        <Button onClick={setToNextMonth} className="scroll-calendar-button">
+            Next month
+        </Button>
       </div>
 
-      <Link to={NEW_ENTRY}>New entry</Link>
+      <Link to={NEW_ENTRY} className="new-entry-button">
+          New entry
+      </Link>
     </div>
   );
 };

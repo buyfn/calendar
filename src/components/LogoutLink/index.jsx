@@ -16,7 +16,7 @@ const LogoutButton = ({ firebase, history }) => {
   };
 
   return (
-    <Button onClick={logout}>Logout</Button>
+    <Button onClick={logout} className="logout-button">Logout</Button>
   );
 };
 

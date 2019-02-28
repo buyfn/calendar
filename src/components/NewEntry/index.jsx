@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isValid, parse } from 'date-fns';
 
+import './NewEntry.css';
 import { MAIN } from '../../constants/routes';
 import Slider from '../Slider';
+import DateInput from '../DateInput/DateInput';
 
 const NewEntry = ({
   firebase,
@@ -43,15 +46,22 @@ const NewEntry = ({
         min="0"
         max="24"
         onChange={handleInput}
-      />
+      >
+        Hours:
+      </Slider>
 
-      <input
-        type="date"
-        name="selectedDate"
+      <DateInput
+        label="Date: "
         onChange={handleInput}
+        name="selectedDate"
       />
 
-      <button type="submit">Log time</button>
+      <button
+        type="submit"
+        disabled={!isValid(parse(selectedDate))}
+      >
+        Log time
+      </button>
     </form>
   );
 };

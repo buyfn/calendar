@@ -1,3 +1,7 @@
+.calendar {
+    padding: 1em;
+}
+
 .month-table {
     border-collapse: collapse;
     min-width: 400px;
@@ -7,7 +11,7 @@
 
 .day-cell {
     border: 1px solid rgba(255, 255, 255, 1);
-    height: 10vw;
+    height: 8vw;
     position: relative;
 }
 
@@ -37,4 +41,29 @@
 
 .calendar-wrapper {
     display: flex;
+    margin-bottom: 1em;
+}
+
+.scroll-calendar-button {
+    width: 100px;
+    border: none;
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 21px;
+    cursor: pointer;
+}
+
+.scroll-calendar-button:hover {
+    background-color: rgba(235, 245, 255, 1);
+}
+
+.new-entry-button {
+    background-color: rgba(0, 0, 255, 1);
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 1);
+    padding: 8px 10px;
+    text-decoration: none;
+}
+
+.new-entry-button:hover {
+    background-color: black;
 }

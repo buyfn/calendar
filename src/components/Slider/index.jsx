@@ -10,10 +10,13 @@ const Slider = ({
   step,
   name,
   onChange,
+  children,
 }) => (
-  <div>
+  <div className="slider">
+    <span>{children}</span>
+
     <input
-      className="slider"
+      className="slider-input"
       type="range"
       name={name}
       value={value}
@@ -33,6 +36,10 @@ Slider.propTypes = {
   max: PropTypes.string,
   step: PropTypes.number,
   onChange: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string,
+  ]),
 };
 
 Slider.defaultProps = {
@@ -40,6 +47,7 @@ Slider.defaultProps = {
   value: '0',
   min: '0',
   max: '100',
+  children: '',
 };
 
 export default Slider;
