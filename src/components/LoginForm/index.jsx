@@ -1,59 +1,61 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { updateInput } from '../../actions';
+const LoginForm = ({
+  firebase,
+  loginEmail,
+  loginPassword,
+  updateInput,
+}) => {
+  const handleInput = ({ target }) => {
+    updateInput(target.name, target.value);
+  };
 
-const handleInput = props => ({ target }) => {
-  props.updateInput(target.name, target.value);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await firebase.doSignInWithEmailAndPassword(
+        loginEmail,
+        loginPassword,
+      );
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  return (
+    <div className="login">
+      <h2>Login</h2>
+
+      <form className="login-form" onSubmit={handleSubmit}>
+        <input
+          name="loginEmail"
+          value={loginEmail}
+          onChange={handleInput}
+          type="text"
+          placeholder="Email"
+        />
+
+        <input
+          name="loginPassword"
+          value={loginPassword}
+          onChange={handleInput}
+          type="password"
+          placeholder="Password"
+        />
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 };
 
-const handleSubmit = props => async (event) => {
-  event.preventDefault();
-
-  try {
-    await props.firebase.doSignInWithEmailAndPassword(
-      props.loginEmail,
-      props.loginPassword,
-    );
-  } catch (err) {
-    alert(err.message);
-  }
+LoginForm.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  loginEmail: PropTypes.string.isRequired,
+  loginPassword: PropTypes.string.isRequired,
+  updateInput: PropTypes.func.isRequired,
 };
 
-const LoginForm = props => (
-  <div className="login">
-    <h2>Login</h2>
-
-    <form className="login-form" onSubmit={handleSubmit(props)}>
-      <input
-        name="loginEmail"
-        value={props.loginEmail}
-        onChange={handleInput(props)}
-        type="text"
-        placeholder="Email"
-      />
-
-      <input
-        name="loginPassword"
-        value={props.loginPassword}
-        onChange={handleInput(props)}
-        type="password"
-        placeholder="Password"
-      />
-
-      <button type="submit">Login</button>
-    </form>
-  </div>
-);
-
-const mapStateToProps = state => ({
-  loginEmail: state.loginEmail,
-  loginPassword: state.loginPassword,
-});
-
-const mapDispatchToProps = { updateInput };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginForm);
+export default LoginForm;

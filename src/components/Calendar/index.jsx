@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   format,
   eachDay,
@@ -70,7 +71,7 @@ const generateWeekStartDates = (date) => {
   return (iter([], monthStart));
 };
 
-const Calendar = (props) => {
+const Calendar = ({ loggedTime }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const weekStartDates = generateWeekStartDates(currentDate);
@@ -92,8 +93,8 @@ const Calendar = (props) => {
       <tr className="week" key={key}>
         {days.map((d) => {
           const formattedDate = format(d, 'YYYY-MM-DD');
-          const hours = formattedDate in props.loggedTime
-            ? props.loggedTime[formattedDate]
+          const hours = formattedDate in loggedTime
+            ? loggedTime[formattedDate]
             : 0;
 
           return renderDayCell(d, hours);
@@ -124,6 +125,10 @@ const Calendar = (props) => {
       <Link to={NEW_ENTRY}>New entry</Link>
     </div>
   );
+};
+
+Calendar.propTypes = {
+  loggedTime: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default Calendar;

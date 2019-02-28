@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import './App.css';
 import Navigation from '../Navigation';
@@ -8,7 +8,6 @@ import Calendar from '../../containers/Calendar';
 import AuthPage from '../Auth';
 import NewEntryPage from '../NewEntry';
 import NotFound from '../NotFound';
-import { setCurrentUser, setLoggedTime } from '../../actions';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -60,13 +59,17 @@ const App = ({
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser,
-});
+/* eslint-disable react/forbid-prop-types */
+App.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
+  setCurrentUser: PropTypes.func.isRequired,
+  setLoggedTime: PropTypes.func.isRequired,
+};
+/* eslint-enable */
 
-const mapDispatchToProps = { setCurrentUser, setLoggedTime };
+App.defaultProps = {
+  currentUser: null,
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default App;

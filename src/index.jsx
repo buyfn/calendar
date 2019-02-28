@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import './index.css';
-import App from './components/App';
+import App from './containers/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
 import reducer from './reducers';
 

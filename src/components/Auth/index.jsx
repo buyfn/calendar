@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SignUpForm from '../SignUpForm';
-import LoginForm from '../LoginForm';
+import LoginForm from '../../containers/LoginForm';
 import { FirebaseContext } from '../Firebase';
 
 const Auth = () => (
