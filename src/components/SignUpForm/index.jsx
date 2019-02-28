@@ -1,21 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { updateInput } from '../../actions/index';
+import PropTypes from 'prop-types';
 
-const SignUpForm = (props) => {
+const SignUpForm = ({
+  firebase,
+  updateInput,
+  signUpEmail,
+  signUpPassword,
+}) => {
   const handleInput = ({ target }) => {
-    props.updateInput(target.name, target.value);
+    updateInput(target.name, target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { user: { uid } } = await props.firebase.doCreateUserWithEmailAndPassword(
-      props.signUpEmail,
-      props.signUpPassword,
+    const { user: { uid } } = await firebase.doCreateUserWithEmailAndPassword(
+      signUpEmail,
+      signUpPassword,
     );
-    props.firebase.user(uid).set({
-      email: props.signUpEmail,
+
+    firebase.user(uid).set({
+      email: signUpEmail,
     });
   };
 
@@ -26,7 +31,7 @@ const SignUpForm = (props) => {
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
           name="signUpEmail"
-          value={props.signUpEmail}
+          value={signUpEmail}
           onChange={handleInput}
           type="text"
           placeholder="Email"
@@ -34,7 +39,7 @@ const SignUpForm = (props) => {
 
         <input
           name="signUpPassword"
-          value={props.signUpPassword}
+          value={signUpPassword}
           onChange={handleInput}
           type="password"
           placeholder="Password"
@@ -46,14 +51,11 @@ const SignUpForm = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  signUpEmail: state.signUpEmail,
-  signUpPassword: state.signUpPassword,
-});
+SignUpForm.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  signUpEmail: PropTypes.string.isRequired,
+  signUpPassword: PropTypes.string.isRequired,
+  updateInput: PropTypes.func.isRequired,
+};
 
-const mapDispatchToProps = { updateInput };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SignUpForm);
+export default SignUpForm;

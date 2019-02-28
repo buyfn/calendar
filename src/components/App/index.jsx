@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import Navigation from '../../containers/Navigation';
-import Calendar from '../../containers/Calendar';
 import AuthPage from '../Auth';
-import NewEntryPage from '../NewEntry';
+import Calendar from '../../containers/Calendar';
+import Navigation from '../../containers/Navigation';
+import NewEntryPage from '../../containers/NewEntry';
 import NotFound from '../NotFound';
 
 import * as ROUTES from '../../constants/routes';

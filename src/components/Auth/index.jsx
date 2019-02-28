@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignUpForm from '../SignUpForm';
+import SignUpForm from '../../containers/SignUpForm';
 import LoginForm from '../../containers/LoginForm';
 import { FirebaseContext } from '../Firebase';
 

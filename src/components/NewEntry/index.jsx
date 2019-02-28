@@ -1,30 +1,36 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { compose } from 'redux';
-import { addEntry, updateInput } from '../../actions';
 import { MAIN } from '../../constants/routes';
 
-const NewEntry = (props) => {
+const NewEntry = ({
+  firebase,
+  history,
+  addEntry,
+  updateInput,
+  selectedDate,
+  hoursInput,
+  uid,
+}) => {
   const handleInput = ({ target }) => {
-    props.updateInput(target.name, target.value);
+    updateInput(target.name, target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await props.firebase.timeEntry(
-        props.uid,
-        props.selectedDate,
-      ).set(props.hoursInput);
-      props.addEntry(props.selectedDate, props.hoursInput);
+      await firebase.timeEntry(
+        uid,
+        selectedDate,
+      ).set(hoursInput);
+
+      addEntry(selectedDate, hoursInput);
     } catch (err) {
       alert(err);
     }
 
-    props.history.push(MAIN);
+    history.push(MAIN);
   };
 
   return (
@@ -49,18 +55,16 @@ const NewEntry = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  uid: state.currentUser.uid,
-  selectedDate: state.selectedDate,
-  hoursInput: state.hoursInput,
-});
+/* eslint-disable react/forbid-prop-types */
+NewEntry.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  uid: PropTypes.string.isRequired,
+  selectedDate: PropTypes.string.isRequired,
+  hoursInput: PropTypes.string.isRequired,
+  addEntry: PropTypes.func.isRequired,
+  updateInput: PropTypes.func.isRequired,
+};
+/* eslint-enable */
 
-const mapDispatchToProps = { addEntry, updateInput };
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
-  withRouter,
-)(NewEntry);
+export default NewEntry;

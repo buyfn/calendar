@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LogoutLink from '../LogoutLink';
 import { FirebaseContext } from '../Firebase';
@@ -22,5 +23,13 @@ const Navigation = ({ currentUser }) => (
     </FirebaseContext.Consumer>
   </div>
 );
+
+Navigation.propTypes = {
+  currentUser: PropTypes.object,
+};
+
+Navigation.defaultProps = {
+  currentUser: null,
+};
 
 export default Navigation;

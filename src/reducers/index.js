@@ -8,7 +8,7 @@ import {
 const initialState = {
   currentUser: null,
   loggedHours: {},
-  selectedDate: null,
+  selectedDate: '',
   hoursInput: '',
   signUpEmail: '',
   signUpPassword: '',
