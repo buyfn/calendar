@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import LogoutLink from '../LogoutLink';
 import { FirebaseContext } from '../Firebase';
@@ -24,11 +23,4 @@ const Navigation = ({ currentUser }) => (
   </div>
 );
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser,
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Navigation);
+export default Navigation;

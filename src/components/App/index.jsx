@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import Navigation from '../Navigation';
+import Navigation from '../../containers/Navigation';
 import Calendar from '../../containers/Calendar';
 import AuthPage from '../Auth';
 import NewEntryPage from '../NewEntry';
@@ -22,7 +22,7 @@ const App = ({
       setCurrentUser(authUser);
       if (authUser) {
         const data = await firebase.loggedTime(authUser.uid).once('value');
-        setLoggedTime(data.val());
+        setLoggedTime(data.val() || {});
       }
     });
     return unsubscribe;
