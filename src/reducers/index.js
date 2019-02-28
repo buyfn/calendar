@@ -9,7 +9,7 @@ const initialState = {
   currentUser: null,
   loggedHours: {},
   selectedDate: '',
-  hoursInput: '',
+  hoursInput: '0',
   signUpEmail: '',
   signUpPassword: '',
   loginEmail: '',

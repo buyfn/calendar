@@ -1,5 +1,6 @@
 /node_modules
 firebase.js
+.firebaserc
 .firebase
 
 # production

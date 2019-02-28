@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { MAIN } from '../../constants/routes';
+import Slider from '../Slider';
 
 const NewEntry = ({
   firebase,
@@ -35,12 +36,12 @@ const NewEntry = ({
 
   return (
     <form className="new-entry" onSubmit={handleSubmit}>
-      <input
-        type="range"
+      <Slider
+        key="hoursInput"
+        value={hoursInput}
         name="hoursInput"
         min="0"
         max="24"
-        step="1"
         onChange={handleInput}
       />
 
