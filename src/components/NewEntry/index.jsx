@@ -14,12 +14,15 @@ const NewEntry = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await props.firebase.timeEntry(
-      props.uid,
-      props.selectedDate,
-    ).set({
-      hours: props.hoursInput,
-    });
+    try {
+      await props.firebase.timeEntry(
+        props.uid,
+        props.selectedDate,
+      ).set(props.hoursInput);
+      props.addEntry(props.selectedDate, props.hoursInput);
+    } catch (err) {
+      alert(err);
+    }
 
     props.history.push(MAIN);
   };

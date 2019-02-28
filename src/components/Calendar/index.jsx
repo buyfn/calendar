@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   format,
   eachDay,
@@ -28,11 +28,29 @@ const renderMonthHeader = () => (
   </tr>
 );
 
-const renderDayCell = (date) => {
+const renderDayCell = (date, hours = 0) => {
   const dateString = format(date, 'DD');
 
+  const cellColorClass = () => {
+    if (hours > 8) {
+      return 'red';
+    }
+    if (hours === 0) {
+      return 'gray';
+    }
+    if (hours >= 4) {
+      return 'green';
+    }
+    return '';
+  };
+
   return (
-    <td className="day-cell">{dateString}</td>
+    <td className={`day-cell ${cellColorClass()}`} key={date}>
+      <div className="day-cell-date">{dateString}</div>
+      {hours > 0
+        ? <div className="day-cell-hours">{hours}</div>
+        : ''}
+    </td>
   );
 };
 
@@ -52,25 +70,8 @@ const generateWeekStartDates = (date) => {
   return (iter([], monthStart));
 };
 
-const renderWeek = (date) => {
-  const first = startOfISOWeek(date);
-  const last = endOfISOWeek(date);
-
-  const days = eachDay(first, last);
-
-  return (
-    <tr className="week">
-      {days.map(renderDayCell)}
-    </tr>
-  );
-};
-
 const Calendar = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    console.log('effect', props.firebase);
-  });
 
   const weekStartDates = generateWeekStartDates(currentDate);
 
@@ -80,6 +81,26 @@ const Calendar = (props) => {
   };
   const setToPrevMonth = () => changeMonth(-1);
   const setToNextMonth = () => changeMonth(1);
+
+  const renderWeek = (date, key) => {
+    const first = startOfISOWeek(date);
+    const last = endOfISOWeek(date);
+
+    const days = eachDay(first, last);
+
+    return (
+      <tr className="week" key={key}>
+        {days.map((d) => {
+          const formattedDate = format(d, 'YYYY-MM-DD');
+          const hours = formattedDate in props.loggedTime
+            ? props.loggedTime[formattedDate]
+            : 0;
+
+          return renderDayCell(d, hours);
+        })}
+      </tr>
+    );
+  };
 
   return (
     <div>

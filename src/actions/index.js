@@ -14,3 +14,8 @@ export const addEntry = (date, hours) => ({
   type: types.ADD_ENTRY,
   payload: { date, hours },
 });
+
+export const setLoggedTime = data => ({
+  type: types.SET_LOGGED_TIME,
+  payload: { data },
+});

@@ -4,18 +4,28 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Navigation from '../Navigation';
-import Calendar from '../Calendar';
+import Calendar from '../../containers/Calendar';
 import AuthPage from '../Auth';
 import NewEntryPage from '../NewEntry';
-import { setCurrentUser } from '../../actions/index';
+import { setCurrentUser, setLoggedTime } from '../../actions';
 
 import * as ROUTES from '../../constants/routes';
 
-const App = ({ firebase, setCurrentUser, currentUser }) => {
+const App = ({
+  firebase,
+  currentUser,
+  setCurrentUser,
+  setLoggedTime,
+}) => {
   useEffect(() => {
-    firebase.auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = firebase.auth.onAuthStateChanged(async (authUser) => {
       setCurrentUser(authUser);
+      if (authUser) {
+        const data = await firebase.loggedTime(authUser.uid).once('value');
+        setLoggedTime(data.val());
+      }
     });
+    return unsubscribe;
   });
 
   return (
@@ -46,7 +56,7 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser,
 });
 
-const mapDispatchToProps = { setCurrentUser };
+const mapDispatchToProps = { setCurrentUser, setLoggedTime };
 
 export default connect(
   mapStateToProps,

@@ -6,8 +6,33 @@
 }
 
 .day-cell {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 1);
     height: 10vw;
+    position: relative;
+}
+
+.day-cell-date {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    font-size: 11px;
+}
+
+.day-cell-hours {
+    text-align: center;
+    font-size: 22px;
+}
+
+.red {
+    background-color: rgba(255, 170, 155, 1);
+}
+
+.green {
+    background-color: rgba(140, 255, 140, 1);
+}
+
+.gray {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .calendar-wrapper {
