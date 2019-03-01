@@ -10,10 +10,6 @@ const initialState = {
   loggedHours: {},
   selectedDate: '',
   hoursInput: '0',
-  signUpEmail: '',
-  signUpPassword: '',
-  loginEmail: '',
-  loginPassword: '',
 };
 
 const reducer = (state = initialState, action) => {

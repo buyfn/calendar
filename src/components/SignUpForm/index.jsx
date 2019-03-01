@@ -1,69 +1,62 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Formik } from 'formik';
 
 import { createUser } from 'src/firebase/auth';
 import { user } from 'src/firebase/api';
 
-const SignUpForm = ({
-  updateInput,
-  signUpEmail,
-  signUpPassword,
-}) => {
-  const handleInput = ({ target }) => {
-    updateInput(target.name, target.value);
-  };
+const SignUpForm = () => (
+  <div className="signup">
+    <h2>Sign up</h2>
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          const { user: { uid } } = await createUser(
+            values.email,
+            values.password,
+          );
 
-    try {
-      const { user: { uid } } = await createUser(
-        signUpEmail,
-        signUpPassword,
-      );
+          user(uid).set({
+            email: values.email,
+          });
+        } catch (err) {
+          alert(err.message);
+        }
 
-      user(uid).set({
-        email: signUpEmail,
-      });
+        setSubmitting(false);
+      }}
+    >
+      {({
+        values,
+        handleSubmit,
+        handleChange,
+        isSubmitting,
+      }) => (
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            placeholder="Email"
+          />
 
-      updateInput('signUpEmail', '');
-      updateInput('signUpPassword', '');
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+          <input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            placeholder="Password"
+          />
 
-  return (
-    <div className="signup">
-      <h2>Sign up</h2>
-
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <input
-          name="signUpEmail"
-          value={signUpEmail}
-          onChange={handleInput}
-          type="text"
-          placeholder="Email"
-        />
-
-        <input
-          name="signUpPassword"
-          value={signUpPassword}
-          onChange={handleInput}
-          type="password"
-          placeholder="Password"
-        />
-
-        <button type="submit">Sign up</button>
-      </form>
-    </div>
-  );
-};
-
-SignUpForm.propTypes = {
-  signUpEmail: PropTypes.string.isRequired,
-  signUpPassword: PropTypes.string.isRequired,
-  updateInput: PropTypes.func.isRequired,
-};
+          <button type="submit" disabled={isSubmitting}>
+            Sign up
+          </button>
+        </form>
+      )}
+    </Formik>
+  </div>
+);
 
 export default SignUpForm;
