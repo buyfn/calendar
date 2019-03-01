@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { signIn } from '../../firebase/auth';
+import { signIn } from 'src/firebase/auth';
 
 const LoginForm = ({
   loginEmail,

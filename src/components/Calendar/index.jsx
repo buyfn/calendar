@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   format,
   eachDay,
@@ -11,11 +12,11 @@ import {
   startOfISOWeek,
   endOfISOWeek,
 } from 'date-fns';
-import { Link } from 'react-router-dom';
+
+import Button from 'src/components/Button';
+import { NEW_ENTRY } from 'src/constants/routes';
 
 import './Calendar.css';
-import Button from '../Button';
-import { NEW_ENTRY } from '../../constants/routes';
 
 const renderMonthHeader = () => (
   <tr>

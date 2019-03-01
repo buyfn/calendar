@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { addEntry, updateInput } from '../actions';
-import NewEntry from '../components/NewEntry';
+import { addEntry, updateInput } from 'src/actions';
+import NewEntry from 'src/components/NewEntry';
 
 const mapStateToProps = state => ({
   uid: state.currentUser.uid,

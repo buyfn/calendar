@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import LogoutLink from 'src/components/LogoutLink';
+import Logo from 'src/components/Logo';
 import './Navigation.css';
-import LogoutLink from '../LogoutLink';
-import Logo from '../Logo';
 
 const Navigation = ({ currentUser }) => (
   <div className="navigation">

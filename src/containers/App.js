@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { setCurrentUser, setLoggedTime } from '../actions';
-import App from '../components/App';
+import { setCurrentUser, setLoggedTime } from 'src/actions';
+import App from 'src/components/App';
 
 const mapStateToProps = state => ({
   currentUser: state.currentUser,

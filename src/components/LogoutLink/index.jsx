@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-import { signOut } from '../../firebase/auth';
+import { signOut } from 'src/firebase/auth';
+import { MAIN } from 'src/constants/routes';
 
-import Button from '../Button';
-import { MAIN } from '../../constants/routes';
+import Button from 'src/components/Button';
 
 const LogoutButton = ({ history }) => {
   const logout = async () => {

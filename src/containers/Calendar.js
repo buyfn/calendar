@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Calendar from '../components/Calendar';
+import Calendar from 'src/components/Calendar';
 
 const mapStateToProps = state => ({
   loggedTime: state.loggedHours,
