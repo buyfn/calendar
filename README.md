@@ -1,6 +1,9 @@
 # Time tracking app
 Time tracking app built with react and firebase
 
+## Demo
+[https://calendar-8b60a.firebaseapp.com](https://calendar-8b60a.firebaseapp.com)
+
 ## How to start
 
 ### Step 1
