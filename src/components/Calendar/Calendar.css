@@ -4,14 +4,14 @@
 
 .month-table {
     border-collapse: separate;
-    min-width: 400px;
+    min-width: 300px;
     width: calc(100% - 200px);
     table-layout: fixed;
 }
 
 .day-cell {
     border: none;
-    height: 8vw;
+    height: 7vw;
     position: relative;
 }
 
