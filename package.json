@@ -5,7 +5,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
-    "lint": "eslint --ext .js,.jsx src/"
+    "lint": "eslint --ext .js,.jsx src/",
+    "deploy": "yarn build && firebase deploy"
   },
   "main": "index.js",
   "author": "ignat",
