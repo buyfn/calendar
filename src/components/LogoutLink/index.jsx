@@ -23,7 +23,9 @@ const LogoutButton = ({ history }) => {
 };
 
 LogoutButton.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default withRouter(LogoutButton);

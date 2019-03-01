@@ -68,7 +68,9 @@ const NewEntry = ({
 };
 
 NewEntry.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   uid: PropTypes.string.isRequired,
   selectedDate: PropTypes.string.isRequired,
   hoursInput: PropTypes.string.isRequired,

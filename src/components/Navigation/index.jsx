@@ -21,7 +21,9 @@ const Navigation = ({ currentUser }) => (
 );
 
 Navigation.propTypes = {
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.shape({
+    uid: PropTypes.string,
+  }),
 };
 
 Navigation.defaultProps = {

@@ -61,13 +61,13 @@ const App = ({
   );
 };
 
-/* eslint-disable react/forbid-prop-types */
 App.propTypes = {
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.shape({
+    uid: PropTypes.string,
+  }),
   setCurrentUser: PropTypes.func.isRequired,
   setLoggedTime: PropTypes.func.isRequired,
 };
-/* eslint-enable */
 
 App.defaultProps = {
   currentUser: null,
