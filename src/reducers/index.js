@@ -3,7 +3,7 @@ import {
   SET_CURRENT_USER,
   SET_LOGGED_TIME,
   UPDATE_INPUT,
-} from '../constants/actionTypes';
+} from 'src/constants/actionTypes';
 
 const initialState = {
   currentUser: null,

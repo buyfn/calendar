@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { auth } from '../../firebase/firebase';
-import { loggedTime } from '../../firebase/api';
+import { auth } from 'src/firebase/firebase';
+import { loggedTime } from 'src/firebase/api';
+import * as ROUTES from 'src/constants/routes';
 
 import './App.css';
-import AuthPage from '../Auth';
-import Calendar from '../../containers/Calendar';
-import Navigation from '../../containers/Navigation';
-import NewEntryPage from '../../containers/NewEntry';
-import NotFound from '../NotFound';
-
-import * as ROUTES from '../../constants/routes';
+import AuthPage from 'src/components/Auth';
+import Calendar from 'src/containers/Calendar';
+import Navigation from 'src/containers/Navigation';
+import NewEntryPage from 'src/containers/NewEntry';
+import NotFound from 'src/components/NotFound';
 
 const App = ({
   currentUser,

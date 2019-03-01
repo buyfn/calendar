@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isValid, parse } from 'date-fns';
 
-import { timeEntry } from '../../firebase/api';
+import { timeEntry } from 'src/firebase/api';
+import { MAIN } from 'src/constants/routes';
 
+import Slider from 'src/components/Slider';
+import DateInput from 'src/components/DateInput/DateInput';
 import './NewEntry.css';
-import { MAIN } from '../../constants/routes';
-import Slider from '../Slider';
-import DateInput from '../DateInput/DateInput';
 
 const NewEntry = ({
   history,

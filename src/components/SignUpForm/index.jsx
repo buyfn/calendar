@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createUser } from '../../firebase/auth';
-import { user } from '../../firebase/api';
+import { createUser } from 'src/firebase/auth';
+import { user } from 'src/firebase/api';
 
 const SignUpForm = ({
   updateInput,
