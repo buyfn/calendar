@@ -1,16 +1,9 @@
-const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
-  mode: 'development',
-  devServer: {
-    contentBase: './build',
-    historyApiFallback: {
-      index: 'index.html',
-    },
-  },
   module: {
     rules: [
       {
@@ -27,14 +20,11 @@ module.exports = {
       },
     ],
   },
-  output: {
-    filename: chunkData => (chunkData.chunk.name === 'main' ? 'application.js' : '[name].js'),
-    path: path.resolve(__dirname, 'build'),
-  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
+    new CleanWebpackPlugin(['build']),
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
@@ -42,20 +32,4 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'initial',
-      cacheGroups: {
-        vendor: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
-        },
-        common: {
-          name: 'common',
-          test: path.resolve(__dirname, 'src'),
-          minChunks: 2,
-        },
-      },
-    },
-  },
 };
