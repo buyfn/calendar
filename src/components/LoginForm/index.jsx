@@ -37,7 +37,7 @@ const LoginForm = ({
           name="loginEmail"
           value={loginEmail}
           onChange={handleInput}
-          type="text"
+          type="email"
           placeholder="Email"
         />
 
