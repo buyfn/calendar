@@ -16,17 +16,21 @@ const SignUpForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { user: { uid } } = await createUser(
-      signUpEmail,
-      signUpPassword,
-    );
+    try {
+      const { user: { uid } } = await createUser(
+        signUpEmail,
+        signUpPassword,
+      );
 
-    user(uid).set({
-      email: signUpEmail,
-    });
+      user(uid).set({
+        email: signUpEmail,
+      });
 
-    updateInput('signUpEmail', '');
-    updateInput('signUpPassword', '');
+      updateInput('signUpEmail', '');
+      updateInput('signUpPassword', '');
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
