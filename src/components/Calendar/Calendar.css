@@ -3,14 +3,14 @@
 }
 
 .month-table {
-    border-collapse: collapse;
+    border-collapse: separate;
     min-width: 400px;
-    width: 80%;
+    width: calc(100% - 200px);
     table-layout: fixed;
 }
 
 .day-cell {
-    border: 1px solid rgba(255, 255, 255, 1);
+    border: none;
     height: 8vw;
     position: relative;
 }
