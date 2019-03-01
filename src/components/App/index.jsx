@@ -22,6 +22,7 @@ const App = ({
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       setCurrentUser(authUser);
+
       if (authUser) {
         const data = await loggedTime(authUser.uid).once('value');
         setLoggedTime(data.val() || {});

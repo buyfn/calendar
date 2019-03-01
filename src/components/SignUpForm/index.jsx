@@ -24,6 +24,9 @@ const SignUpForm = ({
     user(uid).set({
       email: signUpEmail,
     });
+
+    updateInput('signUpEmail', '');
+    updateInput('signUpPassword', '');
   };
 
   return (

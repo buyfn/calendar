@@ -20,6 +20,9 @@ const LoginForm = ({
         loginEmail,
         loginPassword,
       );
+
+      updateInput('loginEmail', '');
+      updateInput('loginPassword', '');
     } catch (err) {
       alert(err.message);
     }
