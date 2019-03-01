@@ -2,9 +2,9 @@
   "name": "calendar",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --watch --config webpack.dev.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
     "lint": "eslint --ext .js,.jsx src/",
     "deploy": "yarn build && firebase deploy"
   },
@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^1.0.1",
     "css-loader": "^2.1.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -38,6 +39,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
   }
 }
