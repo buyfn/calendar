@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import { auth } from '../../firebase/firebase';
+import { loggedTime } from '../../firebase/api';
+
 import './App.css';
 import AuthPage from '../Auth';
 import Calendar from '../../containers/Calendar';
@@ -12,16 +15,15 @@ import NotFound from '../NotFound';
 import * as ROUTES from '../../constants/routes';
 
 const App = ({
-  firebase,
   currentUser,
   setCurrentUser,
   setLoggedTime,
 }) => {
   useEffect(() => {
-    const unsubscribe = firebase.auth.onAuthStateChanged(async (authUser) => {
+    const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       setCurrentUser(authUser);
       if (authUser) {
-        const data = await firebase.loggedTime(authUser.uid).once('value');
+        const data = await loggedTime(authUser.uid).once('value');
         setLoggedTime(data.val() || {});
       }
     });
@@ -39,7 +41,7 @@ const App = ({
               path={ROUTES.MAIN}
               component={
                 currentUser
-                  ? () => <Calendar firebase={firebase} />
+                  ? Calendar
                   : AuthPage
               }
             />
@@ -47,7 +49,7 @@ const App = ({
               path={ROUTES.NEW_ENTRY}
               component={
                 currentUser
-                  ? () => <NewEntryPage firebase={firebase} />
+                  ? NewEntryPage
                   : NotFound
               }
             />
@@ -61,7 +63,6 @@ const App = ({
 
 /* eslint-disable react/forbid-prop-types */
 App.propTypes = {
-  firebase: PropTypes.object.isRequired,
   currentUser: PropTypes.object,
   setCurrentUser: PropTypes.func.isRequired,
   setLoggedTime: PropTypes.func.isRequired,

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isValid, parse } from 'date-fns';
 
+import { timeEntry } from '../../firebase/api';
+
 import './NewEntry.css';
 import { MAIN } from '../../constants/routes';
 import Slider from '../Slider';
 import DateInput from '../DateInput/DateInput';
 
 const NewEntry = ({
-  firebase,
   history,
   addEntry,
   updateInput,
@@ -24,7 +25,7 @@ const NewEntry = ({
     event.preventDefault();
 
     try {
-      await firebase.timeEntry(
+      await timeEntry(
         uid,
         selectedDate,
       ).set(hoursInput);
@@ -66,9 +67,7 @@ const NewEntry = ({
   );
 };
 
-/* eslint-disable react/forbid-prop-types */
 NewEntry.propTypes = {
-  firebase: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   uid: PropTypes.string.isRequired,
   selectedDate: PropTypes.string.isRequired,
@@ -76,6 +75,5 @@ NewEntry.propTypes = {
   addEntry: PropTypes.func.isRequired,
   updateInput: PropTypes.func.isRequired,
 };
-/* eslint-enable */
 
 export default NewEntry;

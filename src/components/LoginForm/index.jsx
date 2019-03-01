@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { signIn } from '../../firebase/auth';
+
 const LoginForm = ({
-  firebase,
   loginEmail,
   loginPassword,
   updateInput,
@@ -15,7 +16,7 @@ const LoginForm = ({
     event.preventDefault();
 
     try {
-      await firebase.doSignInWithEmailAndPassword(
+      await signIn(
         loginEmail,
         loginPassword,
       );
@@ -52,7 +53,6 @@ const LoginForm = ({
 };
 
 LoginForm.propTypes = {
-  firebase: PropTypes.object.isRequired,
   loginEmail: PropTypes.string.isRequired,
   loginPassword: PropTypes.string.isRequired,
   updateInput: PropTypes.func.isRequired,

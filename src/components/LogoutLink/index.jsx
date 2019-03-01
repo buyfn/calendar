@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
+import { signOut } from '../../firebase/auth';
+
 import Button from '../Button';
 import { MAIN } from '../../constants/routes';
 
-const LogoutButton = ({ firebase, history }) => {
+const LogoutButton = ({ history }) => {
   const logout = async () => {
     try {
-      await firebase.doSignOut();
+      await signOut();
       history.push(MAIN);
     } catch (err) {
       alert(err);
@@ -21,7 +23,6 @@ const LogoutButton = ({ firebase, history }) => {
 };
 
 LogoutButton.propTypes = {
-  firebase: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 

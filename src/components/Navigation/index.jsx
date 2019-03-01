@@ -3,26 +3,20 @@ import PropTypes from 'prop-types';
 
 import './Navigation.css';
 import LogoutLink from '../LogoutLink';
-import { FirebaseContext } from '../Firebase';
 
 const Navigation = ({ currentUser }) => (
   <div className="navigation">
-    <FirebaseContext.Consumer>
-      {firebase => (
-        currentUser
-          ? (
-            <div>
-              <span className="current-user-email">
-                {currentUser.email}
-              </span>
+    {currentUser
+      ? (
+        <div>
+          <span className="current-user-email">
+            {currentUser.email}
+          </span>
 
-              <LogoutLink firebase={firebase} />
-            </div>
-          )
-          : ''
+          <LogoutLink />
+        </div>
       )
-      }
-    </FirebaseContext.Consumer>
+      : ''}
   </div>
 );
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { createUser } from '../../firebase/auth';
+import { user } from '../../firebase/api';
+
 const SignUpForm = ({
-  firebase,
   updateInput,
   signUpEmail,
   signUpPassword,
@@ -14,12 +16,12 @@ const SignUpForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { user: { uid } } = await firebase.doCreateUserWithEmailAndPassword(
+    const { user: { uid } } = await createUser(
       signUpEmail,
       signUpPassword,
     );
 
-    firebase.user(uid).set({
+    user(uid).set({
       email: signUpEmail,
     });
   };
@@ -52,7 +54,6 @@ const SignUpForm = ({
 };
 
 SignUpForm.propTypes = {
-  firebase: PropTypes.object.isRequired,
   signUpEmail: PropTypes.string.isRequired,
   signUpPassword: PropTypes.string.isRequired,
   updateInput: PropTypes.func.isRequired,
