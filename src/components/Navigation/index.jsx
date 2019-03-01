@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import './Navigation.css';
 import LogoutLink from '../LogoutLink';
+import Logo from '../Logo';
 
 const Navigation = ({ currentUser }) => (
   <div className="navigation">
+    <Logo companyName="ООО &laquo;Произвольное&raquo;" />
     {currentUser
       ? (
         <div>
