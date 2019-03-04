@@ -31,9 +31,9 @@ const Slider = ({
 
 Slider.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  min: PropTypes.string,
-  max: PropTypes.string,
+  value: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
   step: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
@@ -44,9 +44,9 @@ Slider.propTypes = {
 
 Slider.defaultProps = {
   step: 1,
-  value: '0',
-  min: '0',
-  max: '100',
+  value: 0,
+  min: 0,
+  max: 0,
   children: '',
 };
 

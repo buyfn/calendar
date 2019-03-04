@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isValid, parse } from 'date-fns';
+import { Formik } from 'formik';
 
 import { timeEntry } from 'src/firebase/api';
 import { MAIN } from 'src/constants/routes';
@@ -12,70 +13,59 @@ import './NewEntry.css';
 const NewEntry = ({
   history,
   addEntry,
-  updateInput,
-  selectedDate,
-  hoursInput,
   uid,
-}) => {
-  const handleInput = ({ target }) => {
-    updateInput(target.name, target.value);
-  };
+}) => (
+  <Formik
+    initialValues={{ hours: 0, date: '' }}
+    onSubmit={async (values) => {
+      try {
+        await timeEntry(uid, values.date).set(values.hours);
+        addEntry(values.date, String(values.hours));
+      } catch (err) {
+        alert(err);
+      }
+      history.push(MAIN);
+    }}
+  >
+    {({
+      values,
+      handleSubmit,
+      handleChange,
+    }) => (
+      <form className="new-entry" onSubmit={handleSubmit}>
+        <Slider
+          key="hours"
+          value={values.hours}
+          name="hours"
+          min={0}
+          max={24}
+          onChange={handleChange}
+        >
+            Hours:
+        </Slider>
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+        <DateInput
+          label="Date: "
+          onChange={handleChange}
+          name="date"
+        />
 
-    try {
-      await timeEntry(
-        uid,
-        selectedDate,
-      ).set(hoursInput);
-
-      addEntry(selectedDate, hoursInput);
-    } catch (err) {
-      alert(err);
-    }
-
-    history.push(MAIN);
-  };
-
-  return (
-    <form className="new-entry" onSubmit={handleSubmit}>
-      <Slider
-        key="hoursInput"
-        value={hoursInput}
-        name="hoursInput"
-        min="0"
-        max="24"
-        onChange={handleInput}
-      >
-        Hours:
-      </Slider>
-
-      <DateInput
-        label="Date: "
-        onChange={handleInput}
-        name="selectedDate"
-      />
-
-      <button
-        type="submit"
-        disabled={!isValid(parse(selectedDate))}
-      >
-        Log time
-      </button>
-    </form>
-  );
-};
-
+        <button
+          type="submit"
+          disabled={!isValid(parse(values.date))}
+        >
+            Log time
+        </button>
+      </form>
+    )}
+  </Formik>
+);
 NewEntry.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
   uid: PropTypes.string.isRequired,
-  selectedDate: PropTypes.string.isRequired,
-  hoursInput: PropTypes.string.isRequired,
   addEntry: PropTypes.func.isRequired,
-  updateInput: PropTypes.func.isRequired,
 };
 
 export default NewEntry;
