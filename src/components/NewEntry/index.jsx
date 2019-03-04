@@ -19,8 +19,10 @@ const NewEntry = ({
     initialValues={{ hours: 0, date: '' }}
     onSubmit={async (values) => {
       try {
-        await timeEntry(uid, values.date).set(values.hours);
-        addEntry(values.date, String(values.hours));
+        const hoursString = String(values.hours);
+
+        await timeEntry(uid, values.date).set(hoursString);
+        addEntry(values.date, hoursString);
       } catch (err) {
         alert(err);
       }
