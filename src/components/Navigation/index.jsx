@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LogoutLink from 'src/components/LogoutLink';
+import LogoutLink from 'src/containers/LogoutLink';
 import Logo from 'src/components/Logo';
 import './Navigation.css';
 
