@@ -1,6 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik } from 'formik';
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+} from 'formik';
+
+import {
+  validatePassword,
+  validateEmail,
+} from 'src/validation';
 
 const SignUpForm = ({ signUpRequest }) => (
   <div className="signup">
@@ -8,38 +18,60 @@ const SignUpForm = ({ signUpRequest }) => (
 
     <Formik
       initialValues={{ email: '', password: '' }}
+      validate={({ email, password }) => {
+        const emailError = validateEmail(email);
+        const passwordError = validatePassword(password);
+
+        return ({
+          ...(emailError ? { email: emailError } : {}),
+          ...(passwordError ? { password: passwordError } : {}),
+        });
+      }}
       onSubmit={(values, { setSubmitting }) => {
         signUpRequest(values.email, values.password);
         setSubmitting(false);
       }}
     >
       {({
-        values,
-        handleSubmit,
-        handleChange,
         isSubmitting,
       }) => (
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
+        <Form className="signup-form">
+          <div className="form-field">
+            <Field
+              type="email"
+              name="email"
+              placeholder="Email"
+              className="form-input"
+            />
+            <ErrorMessage
+              name="email"
+              component="div"
+              className="form-field-error"
+            />
+          </div>
 
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
+          <div className="form-field">
+            <Field
+              type="password"
+              name="password"
+              placeholder="Password"
+              className="form-input"
+            />
+            <ErrorMessage
+              name="password"
+              component="div"
+              className="form-field-error"
+            />
+          </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isSubmitting}
+          >
             Sign up
           </button>
-        </form>
+        </Form>
       )}
     </Formik>
   </div>
