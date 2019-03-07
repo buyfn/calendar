@@ -1,3 +1,29 @@
 .auth-form {
     padding: 1em;
 }
+
+.login, .signup {
+    margin-top: 3em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field {
+    margin: 0 0 1em 0;
+    height: 50px;
+}
+
+.form-field-error {
+    color: rgba(255, 0, 0, 1);
+}
+
+.form-input {
+    font-size: 24px;
+}
+
+.submit-button {
+    width: 100px;
+}
