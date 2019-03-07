@@ -1,16 +1,6 @@
-import * as types from '../constants/actionTypes';
-
-export const setCurrentUser = user => ({
-  type: types.SET_CURRENT_USER,
-  payload: { user },
-});
-
-export const addEntry = (date, hours) => ({
-  type: types.ADD_ENTRY,
-  payload: { date, hours },
-});
-
-export const setLoggedTime = data => ({
-  type: types.SET_LOGGED_TIME,
-  payload: { data },
-});
+export * from './addEntry';
+export * from './fetchTimelog';
+export * from './signOut';
+export * from './signIn';
+export * from './signUp';
+export { default as setCurrentUser } from './user';

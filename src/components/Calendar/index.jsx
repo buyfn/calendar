@@ -133,7 +133,10 @@ const Calendar = ({ loggedTime }) => {
 };
 
 Calendar.propTypes = {
-  loggedTime: PropTypes.objectOf(PropTypes.string).isRequired,
+  loggedTime: PropTypes.objectOf(PropTypes.string),
+};
+Calendar.defaultProps = {
+  loggedTime: {},
 };
 
 export default Calendar;

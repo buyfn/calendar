@@ -1,29 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 
-import { createUser } from 'src/firebase/auth';
-import { user } from 'src/firebase/api';
-
-const SignUpForm = () => (
+const SignUpForm = ({ signUpRequest }) => (
   <div className="signup">
     <h2>Sign up</h2>
 
     <Formik
       initialValues={{ email: '', password: '' }}
-      onSubmit={async (values, { setSubmitting }) => {
-        try {
-          const { user: { uid } } = await createUser(
-            values.email,
-            values.password,
-          );
-
-          user(uid).set({
-            email: values.email,
-          });
-        } catch (err) {
-          alert(err.message);
-        }
-
+      onSubmit={(values, { setSubmitting }) => {
+        signUpRequest(values.email, values.password);
         setSubmitting(false);
       }}
     >
@@ -58,5 +44,9 @@ const SignUpForm = () => (
     </Formik>
   </div>
 );
+
+SignUpForm.propTypes = {
+  signUpRequest: PropTypes.func.isRequired,
+};
 
 export default SignUpForm;

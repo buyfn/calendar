@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { addEntry } from 'src/actions';
+import { addEntryRequest } from 'src/actions';
 import NewEntry from 'src/components/NewEntry';
 
 const mapStateToProps = state => ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
   hoursInput: state.hoursInput,
 });
 
-const mapDispatchToProps = { addEntry };
+const mapDispatchToProps = { addEntryRequest };
 
 export default compose(
   connect(

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { auth } from 'src/firebase/firebase';
-import { loggedTime } from 'src/firebase/api';
 import * as ROUTES from 'src/constants/routes';
 
 import './App.css';
@@ -16,15 +15,14 @@ import NotFound from 'src/components/NotFound';
 const App = ({
   currentUser,
   setCurrentUser,
-  setLoggedTime,
+  fetchTimelogRequest,
 }) => {
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
       setCurrentUser(authUser);
 
       if (authUser) {
-        const data = await loggedTime(authUser.uid).once('value');
-        setLoggedTime(data.val() || {});
+        fetchTimelogRequest(authUser.uid);
       }
     });
     return unsubscribe;
@@ -66,7 +64,7 @@ App.propTypes = {
     uid: PropTypes.string,
   }),
   setCurrentUser: PropTypes.func.isRequired,
-  setLoggedTime: PropTypes.func.isRequired,
+  fetchTimelogRequest: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
