@@ -7,8 +7,6 @@ import NewEntry from 'src/components/NewEntry';
 
 const mapStateToProps = state => ({
   uid: state.currentUser.uid,
-  selectedDate: state.selectedDate,
-  hoursInput: state.hoursInput,
 });
 
 const mapDispatchToProps = { addEntryRequest };
