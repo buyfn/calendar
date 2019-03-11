@@ -12,6 +12,5 @@ Fill `firebaseConfig.example.js` with your credentials and rename to `firebaseCo
 ### Step 2
 
 ```
-make build-image
 make start
 ```
