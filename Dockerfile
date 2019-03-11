@@ -2,7 +2,6 @@ FROM node:8-alpine
 
 # Create a work directory and copy over our dependency manifest files.
 WORKDIR /usr/src/app
-RUN ls
 COPY package.json yarn.lock ./
 RUN yarn
 
