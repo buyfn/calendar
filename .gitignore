@@ -1,9 +1,5 @@
+.env
 /node_modules
-
-# firebase
-firebaseConfig.js
-.firebaserc
-.firebase
 
 # production
 /build
