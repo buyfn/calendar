@@ -12,12 +12,6 @@ Fill `firebaseConfig.example.js` with your credentials and rename to `firebaseCo
 ### Step 2
 
 ```
-yarn install
-yarn start
-```
-
-or with docker:
-```
-docker-compose build web
-docker-compose up web
+make build-image
+make start
 ```
