@@ -12,7 +12,7 @@ import {
   validateEmail,
 } from 'src/validation';
 
-const LoginForm = ({ signInRequest }) => (
+const LoginForm = ({ signInRequest, signInError }) => (
   <div className="login">
     <h2>Login</h2>
 
@@ -43,7 +43,7 @@ const LoginForm = ({ signInRequest }) => (
             <ErrorMessage
               name="email"
               component="div"
-              className="form-field-error"
+              className="error"
             />
           </div>
 
@@ -57,7 +57,7 @@ const LoginForm = ({ signInRequest }) => (
             <ErrorMessage
               name="password"
               component="div"
-              className="form-field-error"
+              className="error"
             />
           </div>
 
@@ -70,6 +70,8 @@ const LoginForm = ({ signInRequest }) => (
         </Form>
       )}
     </Formik>
+
+    <div className="error">{signInError}</div>
   </div>
 );
 

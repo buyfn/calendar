@@ -14,7 +14,6 @@ function* signUp(action) {
     yield call(user, uid, email);
     yield put(signUpSuccess());
   } catch ({ message }) {
-    yield call(alert, message);
     yield put(signUpFailure(message));
   }
 }
