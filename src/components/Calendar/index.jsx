@@ -16,7 +16,7 @@ import {
 import Button from 'src/components/Button';
 import { NEW_ENTRY } from 'src/constants/routes';
 
-import './Calendar.css';
+import './Calendar.scss';
 
 const renderMonthHeader = () => (
   <tr>

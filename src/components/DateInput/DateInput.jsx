@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './DateInput.css';
+import './DateInput.scss';
 
 const DateInput = ({
   onChange,

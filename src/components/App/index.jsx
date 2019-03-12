@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { auth } from 'src/firebase/firebase';
 import * as ROUTES from 'src/constants/routes';
 
-import './App.css';
+import './App.scss';
 import AuthPage from 'src/components/Auth';
 import Calendar from 'src/containers/Calendar';
 import Navigation from 'src/containers/Navigation';

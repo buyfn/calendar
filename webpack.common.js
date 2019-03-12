@@ -14,10 +14,11 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'sass-loader',
         ],
       },
     ],

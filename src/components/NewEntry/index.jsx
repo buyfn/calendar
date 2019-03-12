@@ -7,7 +7,7 @@ import { MAIN } from 'src/constants/routes';
 
 import Slider from 'src/components/Slider';
 import DateInput from 'src/components/DateInput/DateInput';
-import './NewEntry.css';
+import './NewEntry.scss';
 
 const NewEntry = ({
   history,

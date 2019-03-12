@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import LogoutLink from 'src/containers/LogoutLink';
 import Logo from 'src/components/Logo';
-import './Navigation.css';
+import './Navigation.scss';
 
 const Navigation = ({ currentUser }) => (
   <div className="navigation">
