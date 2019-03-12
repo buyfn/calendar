@@ -77,6 +77,10 @@ const LoginForm = ({ signInRequest, signInError }) => (
 
 LoginForm.propTypes = {
   signInRequest: PropTypes.func.isRequired,
+  signInError: PropTypes.string,
+};
+LoginForm.defaultProps = {
+  signInError: '',
 };
 
 export default LoginForm;

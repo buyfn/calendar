@@ -81,6 +81,10 @@ const SignUpForm = ({ signUpRequest, signUpError }) => (
 
 SignUpForm.propTypes = {
   signUpRequest: PropTypes.func.isRequired,
+  signUpError: PropTypes.string,
+};
+SignUpForm.defaultProps = {
+  signUpError: '',
 };
 
 export default SignUpForm;
