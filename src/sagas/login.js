@@ -11,7 +11,6 @@ function* login(action) {
     yield call(signIn, email, password);
     yield put(signInSuccess());
   } catch ({ message }) {
-    yield call(alert, message);
     yield put(signInFailure(message));
   }
 }
