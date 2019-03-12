@@ -3,3 +3,6 @@ build-image:
 
 start:
 	docker-compose up
+
+lint:
+	yarn lint
