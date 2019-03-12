@@ -2,7 +2,9 @@ import {
   ADD_ENTRY_SUCCEEDED,
   SET_CURRENT_USER,
   SIGNUP_FAILED,
+  SIGNUP_REQUESTED,
   SIGNIN_FAILED,
+  SIGNIN_REQUESTED,
   TIMELOG_FETCH_SUCCEEDED,
 } from 'src/constants/actionTypes';
 
@@ -29,8 +31,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, loggedHours: action.payload.data };
     case SIGNUP_FAILED:
       return { ...state, signUpError: action.payload.errorMsg };
+    case SIGNUP_REQUESTED:
+      return { ...state, signUpError: '', signInError: '' };
     case SIGNIN_FAILED:
       return { ...state, signInError: action.payload.errorMsg };
+    case SIGNIN_REQUESTED:
+      return { ...state, signUpError: '', signInError: '' };
     default:
       return state;
   }
