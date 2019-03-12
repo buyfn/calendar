@@ -6,3 +6,6 @@ start:
 
 lint:
 	yarn lint
+
+deploy:
+	yarn deploy
