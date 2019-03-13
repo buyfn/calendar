@@ -7,5 +7,8 @@ start:
 lint:
 	yarn lint
 
+build:
+	yarn build
+
 deploy:
 	yarn deploy
