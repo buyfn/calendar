@@ -5,6 +5,7 @@ script:
 - make lint
 before_deploy:
 - make build
+- ls
 deploy:
   provider: firebase
   token:
