@@ -3,6 +3,8 @@ node_js:
 - stable
 script:
 - make lint
+before_deploy:
+- make build
 deploy:
   provider: firebase
   token:
